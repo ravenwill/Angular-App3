@@ -2,12 +2,14 @@
   <div class="card-body">
     <div class="card-title"></div>
     
-    <form>
+    <form [formGroup]="formulario" (ngSubmit)="autenticar()">
       <div class="form-group">
         <input 
           type="email" 
           class="form-control" 
           placeholder="E-mail"
+          formControlName="email"
+          (keyup)="ocultarErro()"
         >
       </div>
       <div class="form-group">
@@ -15,13 +17,15 @@
           type="password"
           class="form-control" 
           placeholder="Senha"
+          formControlName="senha"
+          (keyup)="ocultarErro()"
         >
       </div>
       <button type="submit" class="btn btn-primary btn-sm btn-block">Entrar</button>
     </form>
     <hr />
 
-    <p class="small text-danger text-center">O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.</p>
+    <p class="small text-danger text-center" *ngIf="exibirErro">O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.</p>
 
   </div>
 </div>
